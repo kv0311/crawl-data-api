@@ -18,5 +18,5 @@ func main() {
 	if port == "" {
 		port = "9000" // Default port if not specified
 	}
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+port, e)
 }
