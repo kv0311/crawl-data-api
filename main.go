@@ -15,12 +15,8 @@ func main() {
 	route.CrawlRoute(e)
 	fmt.Println("Welcome to the webserver")
 	port := os.Getenv("PORT")
-	if len(port) == 0 {
-		port = "9999"
+	if port == "" {
+		port = "9000" // Default port if not specified
 	}
-	fmt.Println("listening on port: ", port)
-	err := http.ListenAndServe(":"+port, nil)
-	if err != nil {
-		panic(err)
-	}
+	http.ListenAndServe(":"+port, nil)
 }
