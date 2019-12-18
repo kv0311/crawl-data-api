@@ -11,7 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// GetDataByName ...
+// GetDataByPhone ...
 func GetDataByPhone(phone string) (dataArray []model.DataCrawl2, err error) {
 	uri := "mongodb+srv://LevineNguyen:Khanhvinh1998@cluster0-2bvwu.mongodb.net/test?retryWrites=true&w=majority"
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))

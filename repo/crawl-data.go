@@ -11,14 +11,12 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	// "go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 //InsertOneData : insert data to localdb
 func InsertOneData(data model.DataCrawl) (err error) {
 	uri := "localhost:27017"
 	session, err := mgo.Dial(uri)
-	// collection := mongoconfig.InitMongo("DataCrawl", "db1")
 	collection := session.DB("DataCrawl").C("database1")
 	err = collection.Insert(data)
 	if err != nil {
@@ -55,12 +53,6 @@ func GetAllData() (dataArray []model.DataCrawl, err error) {
 		// Close the cursor once finished
 		_ = cursor.Close(context.TODO())
 	}
-	// for a.Iter().Next(context.TODO()) {
-	// 	data := model.DataCrawl{}
-	// 	fmt.Println(a)
-	// 	dataArray = append(dataArray, data)
-	// }
-
 	return dataArray, nil
 
 }
@@ -75,12 +67,6 @@ func InsertToNewDatabase(dataInput []interface{}) (dataArray []model.DataCrawl, 
 	}
 	collection := client.Database("DataCrawl").Collection("database1")
 	_, err = collection.InsertMany(context.TODO(), dataInput)
-	// for a.Iter().Next(context.TODO()) {
-	// 	data := model.DataCrawl{}
-	// 	fmt.Println(a)
-	// 	dataArray = append(dataArray, data)
-	// }
-
 	return dataArray, nil
 }
 
