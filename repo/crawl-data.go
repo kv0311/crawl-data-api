@@ -65,8 +65,8 @@ func GetAllData() (dataArray []model.DataCrawl, err error) {
 
 }
 
-//insert data from local db to database1 (mograte success)
-func InsertToNewDatabase(dataInput []interface{}) (err error, dataArray []model.DataCrawl) {
+//InsertToNewDatabase insert data from local db to database1 (mograte success)
+func InsertToNewDatabase(dataInput []interface{}) (dataArray []model.DataCrawl, err error) {
 	uri := "mongodb+srv://LevineNguyen:Khanhvinh1998@cluster0-2bvwu.mongodb.net/test?retryWrites=true&w=majority"
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 	if err != nil {
@@ -81,7 +81,7 @@ func InsertToNewDatabase(dataInput []interface{}) (err error, dataArray []model.
 	// 	dataArray = append(dataArray, data)
 	// }
 
-	return nil, dataArray
+	return dataArray, nil
 }
 
 // GetAllNewDatabase1 ... get all data from database1
@@ -119,7 +119,6 @@ func GetAllNewDatabase1() (dataArray []model.DataCrawl, err error) {
 func InsertToNewDatabase2(dataInput []interface{}) (dataArray []model.DataCrawl, err error) {
 	uri := "mongodb+srv://LevineNguyen:Khanhvinh1998@cluster0-2bvwu.mongodb.net/test?retryWrites=true&w=majority"
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
-	result := model.DataCrawl{}
 	if err != nil {
 		log.Println(err)
 		return
@@ -129,12 +128,5 @@ func InsertToNewDatabase2(dataInput []interface{}) (dataArray []model.DataCrawl,
 	if err != nil {
 		return
 	}
-	fmt.Println(result)
-	// for a.Iter().Next(context.TODO()) {
-	// 	data := model.DataCrawl{}
-	// 	fmt.Println(a)
-	// 	dataArray = append(dataArray, data)
-	// }
-
 	return dataArray, nil
 }
