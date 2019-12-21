@@ -16,7 +16,10 @@ func main() {
 	fmt.Println("Welcome to the webserver")
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "9000" // Default port if not specified
+		port = "9090" // Default port if not specified
 	}
-	http.ListenAndServe(":"+port, e)
+	err := http.ListenAndServe(":"+port, e)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
